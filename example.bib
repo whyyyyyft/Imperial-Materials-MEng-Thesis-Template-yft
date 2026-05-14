@@ -1,0 +1,90 @@
+%A book, this needs to have a title, author, publication year and publisher.
+@book{Brandon,
+series = {Quantitative software engineering series},
+issn = {9780470027844},
+publisher = {John Wiley},
+isbn = {9780470727126},
+year = {2008},
+title = {Microstructural characterization of materials},
+edition = {2nd ed.},
+address = {Chichester, England},
+author = {Brandon, D. G},
+keywords = {Materials -- Microscopy.; Microstructure; Electronic books},
+}
+
+%Another book, this time with many authors
+@Book{Giacovazzo,
+  author    = {C. Giacovazzo and H. L. Monaco and G. Artioli and D. Viterbo and M. Milanesio and G. Ferraris and G. Gilli and P. Gilli and G. Zanotti and M. Catti},
+  date      = {2011-02-10},
+  title     = {Fundamentals of Crystallography},
+  editor    = {C. Giacovazzo},
+  isbn      = {9780199573660},
+  pagetotal = {864},
+  publisher = {Oxford University Press},
+  series    = {IUCr Texts on Crystallography},
+  url       = {https://www.ebook.de/de/product/13022794/carmelo_university_of_bari_italy_giacovazzo_hugo_luis_university_of_verona_italy_monaco_gilberto_university_of_padova_italy_artioli_davide_university_del_piemonte_orientale_a_avogadro_italy_viterbo_marco_university_del_piemonte_orientale_a_avogadro_italy_milanesio_fundamentals_of_crystallography.html},
+  ean       = {9780199573660},
+  year      = {2011},
+}
+
+%This is an example of a multi-volume item, mostly used for large reference libraries
+@MvCollection{IUCrTables,
+  date      = {2006},
+  title     = {International Tables for Crystallography},
+  doi       = {10.1107/97809553602060000001},
+  edition   = {First Online},
+  publisher = {Chester: International Union of Crystallography},
+  url       = {https://it-iucr-org.iclibezp1.cc.ic.ac.uk/},
+}
+
+%an item that is part of a collection, so may have a title for the volume/part as well as the collection overall. Here \crossref points to the IUCrTables item above
+@InCollection{ITC_C6.3_Maslen2006,
+  author    = {E. N. Maslen},
+  booktitle = {International Tables for Crystallography},
+  date      = {2006-10},
+  title     = {X-ray absorption},
+  doi       = {10.1107/97809553602060000602},
+  pages     = {599--608},
+  publisher = {International Union of Crystallography},
+  volume    = {C},
+  crossref  = {IUCrTables},
+}
+
+%an example of a web page
+@online{NIST_Xray,
+  date         = {2005},
+  title        = {X-ray Transition Energies Database},
+  url          = {http://physics.nist.gov/PhysRefData/XrayTrans/Html/search.html},
+  organization = {NIST Physical Measurement Laboratory},
+  urldate      = {2020-10-16},
+}
+
+%This is an example of a journal article, uniquely identified by its DOI. 
+@Article{Nelson_1945,
+  author    = {J. B. Nelson and D. P. Riley},
+  title     = {An experimental investigation of extrapolation methods in the derivation of accurate unit-cell dimensions of crystals},
+  doi       = {10.1088/0959-5309/57/3/302},
+  number    = {3},
+  pages     = {160--177},
+  volume    = {57},
+  journal   = {Proc. Phys. Soc.},
+  month     = {5},
+  publisher = {{IOP} Publishing},
+  year      = {1945},
+}
+@article{goedeckerLinearScalingElectronic1999,
+    title = {Linear scaling electronic structure methods},
+    volume = {71},
+    copyright = {http://link.aps.org/licenses/aps-default-license},
+    issn = {0034-6861, 1539-0756},
+    url = {https://link.aps.org/doi/10.1103/RevModPhys.71.1085},
+    doi = {10.1103/RevModPhys.71.1085},
+    language = {en},
+    number = {4},
+    urldate = {2026-05-11},
+    journal = {Reviews of Modern Physics},
+    author = {Goedecker, Stefan},
+    month = jul,
+    year = {1999},
+    pages = {1085--1123},
+}
