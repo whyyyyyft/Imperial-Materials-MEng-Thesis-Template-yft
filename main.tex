@@ -418,7 +418,7 @@ horrid sentence delete it
 
 Solving the many-electron problem is a certifiable nightmare. Fuck Schr\"{o}dinger! He was also a pedo. Fortunately, thanks to the many efforts of physicists and chemists (but mostly physicists) over the years, methods have since been developed to obtain approximate solutions.
 
-The core of the problem lies with the sheer size of the ground-state wavefunction, which scales exponentially with the number of electrons in a system (to be exact, by a power of 3N). While numerical methods such as quantum Monte Carlo exist, they tend to be exceedingly demanding in terms of computational cost\autocite{goedeckerLinearScalingElectronic1999}. As a result, the majority of electronic structure methods today must simplify the many-electron wavefunction in one way or another, whether by using an independent-electron approximation (such as the Hartree-Fock method); only considering near(est) neighbours (the myriad tight-binding methods); or by computing the ground-state electronic density rather than the wavefunction.
+The core of the problem lies with the sheer size of the ground-state wavefunction, which scales exponentially with the number of electrons in a system (to be exact, by a power of 3N). While numerical methods such as quantum Monte Carlo exist, they tend to be exceedingly demanding in terms of computational cost\autocite{foulkesQuantumMonteCarlo2001}. As a result, the majority of electronic structure methods today must simplify the many-electron wavefunction, whether by using an independent-electron approximation (such as the Hartree-Fock method); only considering near(est) neighbours (the myriad tight-binding methods); or by computing the ground-state electronic density rather than the wavefunction.
 
 The latter is the realm of density-functional theory, by far the most popular electronic structure method today.
 
@@ -650,22 +650,26 @@ All input files utilised in this thesis can be found on Zenodo at ref.
 The role of DFT in this project was two-fold. Firstly, it was used to generate training data for the neural network. Secondly, DFT calculations were carried out on the same structures evaluated by the neural network in order to verify its accuracy. Images of atomic structure and wavefunctions were obtained using OpenMX Viewer, a web-based molecular visualiser\autocite{leeOpenMXViewerWebbased2019}. 
 
 \subsection{OpenMX\autocites{ozakiEfficientProjectorExpansion2005,ozakiNumericalAtomicBasis2004, ozakiVariationallyOptimizedAtomic2003, lejaeghereReproducibilityDensityFunctional2016}}
-OpenMX, an open-source DFT software utilizing optimized pseudo-atomic basis functions, was used to prepare the training data for DeepH-E3. DeepH-E3 is compatible with three DFT softwares, all based on molecular orbitals: OpenMX, . Of the three, OpenMX was chosen as it had already been used in . 
+
+All DFT calculations were performed in OpenMX unless stated otherwise. OpenMX is an open-source DFT software utilizing optimized pseudo-atomic basis functions, and was used to prepare the training data for DeepH-E3. DeepH-E3 is compatible with three DFT softwares, all based on molecular orbitals: OpenMX, . Of the three, OpenMX was chosen as it had already been used in . 
 
 Optical conductivity and dielectric function tensors were also calculated with OpenMX using the  . 
 
+\subsubsection{Datasets}
 
 Publically available datasets--also calculated using OpenMX--were used in training the monolayer graphene, monolayer \ce{MoS2}, and bilayer graphene models\autocite{gongDataset1GeneralFramework2023}. These were used in calculating the results published in the original paper for DeepH-E3, allowing for efficient benchmarking of model performance. 
+
+\subsubsection{Complex geometries}
+
+Reference bandstructures were also. For the nanotubes, structural relaxations were carried out to within xxxx and relaxed only at the $\Gamma$-point. Nanotubes with radii of <30\,\AA\ (<180 atoms) 
 
 \subsection{Quantum ESPRESSO\autocite{giannozziQUANTUMESPRESSOModular2009, giannozziAdvancedCapabilitiesMaterials2017}}
 In addition to OpenMX, Quantum ESPRESSO was used to verify results and to obtain results of optical calculations not provided by OpenMX. Quantum ESPRESSO is an open-source plane-wave . The usage of both Quantum ESPRESSO and OpenMX in combination served to . 
 
-Norm-conserving pseudopotentials from the SG15 library were used\autocites{hamannOptimizedNormconservingVanderbilt2013, schlipfOptimizationAlgorithmGeneration2015}.
+Norm-conserving pseudopotentials from the SG15 library were used in all Quantum ESPRESSO calculations\autocites{hamannOptimizedNormconservingVanderbilt2013, schlipfOptimizationAlgorithmGeneration2015}.
 
-For the calculations of dielectric function, absorbance spectra, joint density of states, and , the \textit{epsilon.x} programme in QuantumESPRESSO was used. The formulae of each are detailed below.
+For the calculations of dielectric function, absorbance spectra, and joint density of states the \textit{epsilon.x} programme in QuantumESPRESSO was used. The formulae of each are detailed below.
 
-
-note no spin-orbit coupling or spin polarization or anything or whatever
 
 basis set: spd only
 
@@ -693,7 +697,7 @@ The momentum operator features .
 \nabla_{\vec k}\hat H_{\alpha\beta} (\vec k) &= \frac1N \sum_{\vec R,\vec R'}i(\vec R-\vec R')e^{i(\vec k\cdot (\vec R-\vec R')}\langle \alpha \vec R'|\hat H|\beta \vec R\rangle\end{align}
 
 
-
+All credit goes to Professor Johannes Lischner who derived this in a meeting (thank you very much it was enlightening). 
 Matrix-weighted joint density of states (JDOS): 
 
 Absorbance spectra:
@@ -712,7 +716,7 @@ The fineness of the k-grid is an important parameter; as such, convergence studi
 
 JDOS: $$\frac1{N_k}\sum_{\vec k, m, n} \delta(E-(E_{m,\vec k}-E_{n,\vec k}))$$
 
-Disregarding the intraband contribution, the equation used for the complex dielectric function was: $$\epsilon_{\alpha, \beta} = \delta_{\alpha\beta} +\frac{8}{N_k\Omega}\sum_{\vec k, m\neq n} \frac{\mathbf{M}_{\alpha, \beta}}{E_{m,k}-E_{n,k}}\frac{f(E_k,n)}{(E_{m,k}-E_{n,k})^2-E^2-i\Gamma E}$$ where $\mathbf{M}_{\alpha, \beta} = \langle$
+Disregarding the intraband contribution, the equation used for the complex dielectric function was: $$\epsilon_{\alpha, \beta} = \delta_{\alpha\beta} +\frac{8}{N_k\Omega}\sum_{\vec k, m\neq n} \frac{\mathbf{M}_{\alpha, \beta}}{E_{m,k}-E_{n,k}}\frac{f(E_k,n)}{(E_{m,k}-E_{n,k})^2-E^2-i\Gamma E}$$ where $\mathbf{M}_{\alpha, \beta} = \langle$ \red{would like to discuss next meeting! still slightly off but looks promising?}
 
 
 An additional check was used: $$$$
@@ -759,7 +763,7 @@ look at dos error and plot in 2D k-space please thanks (wait nvm i cant... or ca
 
 DeepH-E3 was also tested on nanotubes with radii ranging from 10\,\AA  to 50\,\AA. Both zigzag and armchair configurations were tested, with 
 
-\ref{figure} shows that the performance declines rapidly with decreasing nanotube radius. This is particularly troubling for multi-walled nanotubes, which contain too many atoms for DFT to handle with ease (i.e. without a GPU or significant time burden) but contain a narrow nanotube which DeepH would surely struggle with. Similarly to the results for strain, the error rises drastically near the $\Gamma$ point, which could be a direct result of the . The magnitude of the error is compared to that of strain alone ; approximate compressive and tensile strains are calculated with the following equations for tensile and compressive strain respectively: $$\varepsilon = r_{\text{outer}}/r_{\text{middle}}$$ . Curvature does/does not make a difference. 
+\ref{figure} shows that the performance declines rapidly with decreasing nanotube radius. This is particularly troubling for multi-walled nanotubes, which contain too many atoms for DFT to handle with ease (i.e. without a GPU or significant time burden) but include a narrow nanotube which DeepH would surely struggle with. Similarly to the results for strain, the error rises drastically near the $\Gamma$ point, which could be a direct result of the . The magnitude of the error is compared to that of strain alone ; approximate compressive and tensile strains are calculated with the following equations for tensile and compressive strain respectively: $$\varepsilon = r_{\text{outer}}/r_{\text{middle}}$$ . Curvature does/does not make a difference. 
 
 \section{Defects}
 
@@ -795,11 +799,16 @@ Randomly perturbed supercells, generated using the same process for the training
 
 \section{Optical effects}
 
-FIGURE: JDOS, DIELECTRIC CONSTANT, TRANSITION DIPOLE MATRIX
+\begin{figure}[]      
+	\centering				%put the figure in the middle of the page
+	\includegraphics[height=10cm]{./img/optical_results.jpg}			
+	\caption{}		%Make your caption descriptive
+	\label{fig:optical}			%so you can reference to the figure elsewhere using \ref{}
+\end{figure}
 
 (mention typical method for optical--wannierize, tight binding)
 
-Several optical effects were computed from the DeepH Hamiltonian, as shown in \ref{figure}. The accuracy in the transition dipole matrix indicates that the method used to orthogonalize the Hamiltonian is reliable, and provides some basis for trusting the results for the dielectric function. The JDOS and dielectric function, while inexact, capture the positions of peaks and their rough amplitudes. As optical functions computed from first principles (not using TDDFT or applied fields or anything) are notoriously tricky, the low error can be considered a roaring (well, more like whispering) success. 
+Several optical effects were computed from the DeepH Hamiltonian, as shown in Figure \ref{fig:optical}. The accuracy in the transition dipole matrix indicates that the method used to orthogonalize the Hamiltonian is reliable, and provides some basis for trusting the results for the dielectric function. The joint density of states (JDOS) and dielectric function, while inexact, capture the positions of peaks and their rough amplitudes. As optical functions computed from first principles (not using TDDFT or applied fields or anything) are notoriously tricky, the low error can be considered a roaring (well, more like whispering) success. 
 
 The JDOS is accurate up to approximately 7eV; this can be attributed to the fact that Quantum ESPRESSO utilises a plane wave basis set, which . As shown in \ref{figure}, the bandstructures computed in OpenMX and Quantum ESPRESSO diverge wildly above 7eV. Fortunately, 7eV in photon-ese corresponds to UV light. Which is kind of important actually so this isn't very fortunate after all.
 
