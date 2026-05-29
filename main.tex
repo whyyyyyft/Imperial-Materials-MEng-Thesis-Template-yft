@@ -674,12 +674,6 @@ Additional check: integrate fermi factor over k, should =1
 
 \section{Putting it all together: the workflow}
 
-\begin{figure}[]      
-	\centering				%put the figure in the middle of the page
-	\includegraphics[height=10cm]{./img/image.png}			
-	\caption{}		%Make your caption descriptive
-	\label{fig:optical}			%so you can reference to the figure elsewhere using \ref{}
-\end{figure}
 
 \chapter{Results and Discussion}
 
@@ -706,14 +700,12 @@ Compressive and tensile biaxial strains ranging from $\pm$1\% to $\pm$10\% were 
 
 \begin{figure}[h]      
 	\centering			%put the figure in the middle of the page
-	\includegraphics[height=15cm]{./img/image1.png}			
+	\includegraphics[height=15cm]{./img/fig_strains1.jpg}			
 	\caption{}		%Make your caption descriptive
 	\label{fig:strain1}			%so you can reference to the figure elsewhere using \ref{}
 \end{figure}
 
-The distribution of error throughout k-space is notably non-uniform, with strong valleys near the K-point and $\Gamma$-point for tensile and compressive strain respectively. \red{need to do more research on this part}
-
-Additionally, the response of each band to ea . In order to investigate this phenomenon, the projected density of states was obtained from DeepH. The impact of strain is largely related to  . 
+The distribution of error throughout k-space is notably non-uniform, with strong valleys between high-symmetry points for compressive strain and at the $\Gamma$-point for tensile strain. \red{need to do more research on this part}
 
 
 The effet. The training dataset for monolayer \ce{MoS2} was taken from a molecular dynamics simulation at room temperature (300\,K). As such, shifts in bond length as high as those seen in unit cells strained above $\pm$6\% (corresponding to about ...\,\AA\ for Mo-Mo bonds) are unlikely to appear. The lack of variety in the training set results in difficulty generalising even to strains that are well below the typical fracture strain of \ce{MoS2}. While a signifcant issue, this is also easily remedied by supplementing the training set with--for example--structures from a molecular dynamics run at a higher temperature. 
@@ -743,10 +735,9 @@ Defects exhibit characteristic energy levels within the bandgap, along with othe
 
 \subsubsection{Vacancies}
 
-Mo and S vacancies were simulated by removing an atom near the middle of a 5x5 supercell. The structures were then relaxed. Figure \ref{fig:vac} shows that DeepH is able to guess the presence of defect states in the bandgap, albeit not their position or quantity. Additionally, the shifts in the valence and conduction band are not accurately captured. 
+Figure \ref{fig:vac} shows that DeepH is able to guess the presence of defect states in the bandgap, albeit not their position or quantity. Additionally, the shifts in the valence and conduction band are not accurately captured. 
 
 
---- increase vacancy concentration
 
 
 \begin{figure}[h]      
@@ -755,10 +746,6 @@ Mo and S vacancies were simulated by removing an atom near the middle of a 5x5 s
 	\caption{}		%Make your caption descriptive
 	\label{fig:vac}			%so you can reference to the figure elsewhere using \ref{}
 \end{figure}
-
-\subsection{Improving performance for unseen geometries}
-
-\red{To mimic the curvature of a nanotube while maintaining some similarity to the monolayer,  supercells were perturbed following a sine wave pattern, enabling periodic boundary conditions. The amplitude of the sine wave was varied between , corresponding to .. and .. \,\AA\. The atoms were then individually perturbed by random vectors, obtained by sampling a normal distribution with mean 0 and . One atom was selected at random to be removed from the supercell, simulating a vacancy.}
 
 \section{Bilayer \ce{MoS2}}
 
