@@ -747,10 +747,6 @@ Figure \ref{fig:vac} shows that DeepH is able to guess the presence of defect st
 	\label{fig:vac}			%so you can reference to the figure elsewhere using \ref{}
 \end{figure}
 
-\subsection{Improving performance for unseen geometries}
-
-\red{To mimic the curvature of a nanotube while maintaining some similarity to the monolayer,  supercells were perturbed following a sine wave pattern, enabling periodic boundary conditions. The amplitude of the sine wave was varied between , corresponding to .. and .. \,\AA\. The atoms were then individually perturbed by random vectors, obtained by sampling a normal distribution with mean 0 and . One atom was selected at random to be removed from the supercell, simulating a vacancy.}
-
 \section{Bilayer \ce{MoS2}}
 
 First, the monolayer-only model was tested on bilayer \ce{MoS2}. Since its performance was predictably abysmal, a separate model was trained on bilayer-only data. An attempt was made to use the monolayer model as a checkpoint and continue its training with the bilayer data, but its performance on the monolayer declined; as a result, it was concluded that utilising the same model for vastly different geometries such as the monolayer and bilayer . We also looked at the performance of the monolayer for bilayer structures as a function of interlayer spacing, which determines the van der Waals interaction and hence electronic structure. Above 5\,\AA\ the DFT results display ??? and the bandstructures resemble those of a simple monolayer. As shown in Fig. \ref{fig:spacings}, 
