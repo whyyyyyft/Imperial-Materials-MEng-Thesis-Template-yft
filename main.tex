@@ -268,7 +268,7 @@ December\fi, \number \year}
 
 \section*{AI declaration}    %the star here means the section is unnumbered and doesn't appear in the TOC
 
-AI was occasionally used for debugging, to suggest research papers and literature reviews (with varied success), and to tell me when I was being extra stupid. All other work is my own unless otherwise stated.
+AI was occasionally used for debugging and for suggesting or explaining research papers and literature reviews. All other work is my own unless otherwise stated.
 
 \section*{Collaboration and supervision}    %the star here means the section is unnumbered and doesn't appear in the TOC
 
@@ -276,9 +276,9 @@ This project is unrelated to previous work within either group, with the excepti
 
 \section*{Acknowledgements}
 
-I wish to extend my sincerest thanks to: Professor Johannes Lischner for his invaluable guidance, patience, and the loan of his Quantum Mechanics part II textbook--without his help, half of this thesis would not exist; Assistant Professor Haowei Xu for ; and Professor Ju Li for welcoming me into his group and constantly suggesting . I would also like to thank Dr. Chengcheng Xiao and  Christopher Cheung of the Mostofi-Lischner group as well as Dr. Hao Tang and Wenhao He of the Li group who graciously lent me their time and tears to help me install the horrendous software OpenMX; Dr. Priya Saravanapavan, Dr. Gloria Young and Mr. Olly Swanton for their excellent pastoral care; . 
+I wish to extend my sincerest thanks to: Professor Johannes Lischner for his invaluable guidance, unending patience, and the loan of his Quantum Mechanics part II textbook; Assistant Professor Haowei Xu for taking the time to explain the various interesting concepts that make up his field of work; and Professor Ju Li for welcoming me into his group and constantly suggesting . I would also like to thank Dr. Chengcheng Xiao and  Christopher Cheung of the Mostofi-Lischner group, Dr. Hao Tang and Wenhao He of the Li group, and ... and Lauren Milechin of the MIT ORCD HPC service, all of whom graciously lent me their time and assistance when I was having conniptions over the dastardly software OpenMX. . My deepest gratitude goes to Dr. Priya Saravanapavan, Dr. Gloria Young and Mr. Olly Swanton for their excellent pastoral care. 
 
-Last but not least, thank you to my family for believing in me. Mi gente Malaysia . 
+Last but not least, thank you to my family for believing in me. Mi gente Malaysia or whatever
 
 
 
@@ -461,7 +461,7 @@ The core issue with solving the many-electron problem lies with the sheer size o
 
 The latter belongs to the realm of density-functional theory (DFT), which stands out due to its balance between predictive power and computational efficiency\autocite{marzariElectronicstructureMethodsMaterials2021}. One especially attractive feature of DFT is its versatility and breadth of functionality: it is easily combined with other models to calculate multiple properties in a single computational run. For example, the majority of DFT programs offer the ability to obtain relaxed structures and interatomic forces using the Hellmann-Feynman theorem, or phonon dispersions via density-functional perturbation theory (DFPT). 
 
-DFT is not without its disadvantages. The most glaring of these is its reliance on the unknown exchange-correlation functional, which can only be approximated. Two commonly used exchange-correlation functionals are the local density approximation (LDA) and generalized gradient approximation (GGA) functionals; however, these tend to overestimate the delocalisation of d-electrons, resulting in a predicted bandgap that is 20-30\% lower than experimental values. In recent years, hybrid functionals and meta-GGA ; HSE; however, these have higher computational cost
+DFT is not without its disadvantages. The most glaring of these is its reliance on the unknown exchange-correlation functional, which accounts for the complex effects of interacting electrons. Two commonly used approximations are the local density approximation (LDA) and generalized gradient approximation (GGA) functionals; however, these tend to overestimate the delocalisation of d-electrons, resulting in a predicted bandgap that is 20-30\% lower than experimental values. In recent years, hybrid functionals and meta-GGA ; HSE; however, these have higher computational cost
 
 Aside from the choice of functional, the pseudopotentials used play a large role in the accuracy and reproducibility of DFT results. Although . linked to basis sets
 
@@ -471,7 +471,7 @@ Last but not least, the nature of the iterative self-consistent calculations--wh
 \subsection{Electronic structure methods for larger systems}
 
 Linear-scaling methods typically take one of two forms. The first form, orbital-free DFT, 
-directly approximates the non-interacting kinetic energy $T_s[\rho]$, which is calculated exactly in Kohn-Sham DFT. Orbital-free DFT uses only the electron density as a function of three spatial coordinates, bypassing the one-electron Kohn-Sham orbitals altogether. This avoids the issues of matrix diagonalization and orbital orthonormalization present in KS-DFT, which are the cause of its cubic scaling. 
+directly approximates the non-interacting kinetic energy $T_s[\rho]$, which is calculated exactly in Kohn-Sham DFT\autocite{wangOrbitalFreeKineticEnergyDensity2002}. Orbital-free DFT uses only the electron density as a function of three spatial coordinates, bypassing the one-electron Kohn-Sham orbitals altogether. This avoids the issues of matrix diagonalization and orbital orthonormalization present in KS-DFT, which are the cause of its cubic scaling. 
 
 Orbital-free DFT has been used for systems with over a million atoms, with some codes recording only 5 hours taken to achieve this feat. However, 
 
@@ -503,9 +503,9 @@ mention need for manual intervention / input -- less than ideal for high-through
 
 In recent years, machine learning (ML) has emerged as a route to improve the efficiency of current methods by utilising models trained on experimental or computational results. This shift to data-driven approaches is in part motivated by the wide availability of data via high-throughput DFT databases such as the Materials Project, alongside the rapid growth of ML methods in general\autocite{ceriottiMachineLearningMeets2021}. 
 
-In the simplest application of ML to materials science, algorithms learn a given property and attempt to predict or classify it for an unseen material--for example, the prediction of bandgaps based on chemical composition\autocite{MachineLearningMaterials}. The `structure $\rightarrow$ property' approach often utilises relatively simple, well-understood models such as linear regression, and can produce highly accurate results with errors in the realm of 0.6\,eV (in the case of the bandgap example). However, models are limited to the prediction or classification of a single property; additionally, the lack of physics involved can be disadvantageous when considering materials with strongly-correlated effects and exotic properties, such as \ce{BiTe3}. 
+In the simplest application of ML to materials science, algorithms learn a given property and attempt to predict or classify it for an unseen material--for example, the prediction of bandgaps based on chemical composition\autocite{MachineLearningMaterials}. The `structure $\rightarrow$ property' approach often utilises relatively simple, well-understood models such as linear regression or decision trees. However, models are effectively limited to the prediction or classification of a single property; additionally, the lack of physics involved can be disadvantageous when considering materials with strongly-correlated effects and exotic properties, such as \ce{BiTe3}. 
 
-For more complex problems and functions, two popular approaches used by materials scientists are Kernel Ridge Regression (KRR) and neural networks. KRR is concerned with . Neural networks, on the other hand, can approximate any well-behaved function to an arbitrary degree by utilising layers of . Deep neural networks specifically are those with 
+For more complex problems and functions, two popular approaches used by materials scientists are kernel-based ML and artificial neural networks\autocite{ruppGuestEditorialSpecial2018}. The former involves using kernel functions to map input data into a higher-dimensional feature space, where they can be fitted using simple algorithms. Neural networks, on the other hand, approximate any well-behaved function by utilising layers of artificial neurons, or nodes, connected by edges. Once the input is received and transformed into a signal, the first layer converts this signal into a new output using a series of simple functions. Each node sends its output to the next layer through the connecting edges, and the process repeats. By continuously adjusting the functions in order to minimise predictive error, the neural network `learns' as it is exposed to data. Deep neural networks are composed of at least four layers, allowing them to fit even extremely elaborate representations. This increase in complexity comes at the cost of higher computational times, memory requirements, and--usually--larger training datasets.
 
 \begin{comment}
 While more complex models like neural networks can improve prediction accuracy, they tend to sacrifice computational speed and interpretability. 
@@ -513,11 +513,18 @@ While more complex models like neural networks can improve prediction accuracy, 
 
 Neural networks are widely used for machine learned interatomic potentials (MLIPs), which serve as an alternative to the empirical interatomic potentials used in molecular dynamics (MD). These attempt to recover the potential energy of a given system as a function of atomic positions, based on data from \textit{ab initio} MD trajectories. As they enable simulations for very large systems which would be impossible with classical MD, MLIPs have been one of the most widely researched applications of ML for materials science from as early as 2016\autocite{behlerPerspectiveMachineLearning2016}. However, since the input involves atomic positions in real space instead of simply a chemical formula or crystal structure, the issue of how the material is represented becomes highly pertinent\autocite{fangLearningAtomicRepresentations2026}. 
 
-Earlier models used frameworks such as Matminer and Magpie to convert chemical composition into a large number of features (hence forming a `feature space'), such as electronegativity, minimum atomic radius, and so on. Meanwhile, crystal structure and atomic environments could be represented by : While suitable for simple regression and classification tasks, these do not capture structural features on larger length scales, such as defects and nanopatterning. As a result, nanomaterials--particularly those with complex geometries--necessitate a more flexible, informative representation.
+Earlier models used frameworks such as Matminer to convert chemical composition into a large number of features such as electronegativity, minimum atomic radius, and mean melting temperature. Meanwhile, crystal structure and atomic environments could be represented by simple numerical features like the packing fraction and density, or by more detailed descriptors, such as the Coulomb matrix. While efficient and well-suited for simple regression and classification tasks, these do not capture structural features on larger length scales, such as defects and nanopatterning. As a result, nanomaterials--particularly those with complex geometries--necessitate a more flexible, informative representation.
 
-In 2018, Xie et al proposed using crystal graph convolutional networks (CGCNNs), where atoms are represented by nodes and their interactions by edges\autocite{xieCrystalGraphConvolutional2018}. Whereas node features encapsulate elemental properties such as the atomic number and , edge features encode geometric information such as bond angles and interatomic distances. Another  
+In 2018, Xie et al proposed using graph-based neural networks, where atoms are represented by nodes and their interactions by edges\autocite{xieCrystalGraphConvolutional2018}. While node features encapsulate elemental properties such as the atomic number, edge features encode geometric information such as bond angles and interatomic distances. By repeatedly aggregating information from neighbouring atoms at each node, then redistributing the aggregated outputs to the next layer, the neural network `learns' how to best represent the atomic environment. Graph-based representations have since become a mainstay of ML for materials science, and have repeatedly demonstrated their usefulness in applications ranging from MLIPs to predicting spectral properties like the dielectric function.
 
-While a large step forward, one essential feature of realistic material systems was missing: symmetry. Physical properties of systems change together with the system itself when undergoing a transformation in basis, coordinate or gauge; . The rotation group 
+However, an essential feature of realistic material systems was missing: symmetry. Translation, inversion, rotation and time reversal are key symmetries which govern the properties and behaviour of crystalline materials; however, these are not . 
+
+The transformations occurring at each node can disobey these fundamental principles, leading to outputs and predictions which are unphysical 
+
+Tensor and vector quantities often obey strict laws under transformations which failed to be captured by these earlier GNNs. 
+
+
+Physical properties of systems change together with the system itself when undergoing a transformation in basis, coordinate or gauge; . The rotation group 
 
 The Euclidean group in 3D (also known as the E(3) group) is the perfect example \autocite{batznerE3equivariantGraphNeural2022}
 
@@ -530,32 +537,34 @@ SE(3), E(3) and O(3) groups respectively.
 
 
 \begin{figure}[h]      
-	\centering			%put the figure in the middle of the page
+	\centering		
 	\includegraphics[height=10cm]{./img/fig1_mono.jpg}			
-	\caption{(a) Bandstructures calculated using DeepH and DFT for a monolayer \ce{MoS2} unit cell. (b) A visualisation of the \ce{MoS2} unit cell with lattice vectors and atoms labelled. (c) A plot of RMSE (root mean squared error) in the bandstructure for several 5\,x\,5 \ce{MoS2} supercells perturbed with increasing amplitudes. (d) A histogram of the perturbations applied to the systems studied in plot (c).}		%Make your caption descriptive
-	\label{fig:mono1}			%so you can reference to the figure elsewhere using \ref{}
+	\caption{(a) Bandstructures calculated using DeepH and DFT for a monolayer \ce{MoS2} unit cell. (b) A visualisation of the \ce{MoS2} unit cell with lattice vectors and atoms labelled. (c) A plot of RMSE (root mean squared error) in the bandstructure for several 5\,x\,5 \ce{MoS2} supercells perturbed with increasing amplitudes. (d) A histogram of the perturbations applied to the systems studied in plot (c).}	
+	\label{fig:mono1}			
 \end{figure}
 
-\red{distinction between ML and deep learning--deep learning as subset, define neural network, brief overview of non-NN and their advantages/disadvantages}
+ACE  or CGNNs involving--a key problem in taking atomic positions as an input lies with  .. Unlike , to predict from structure in 3D, needed to . E(3)NNs allowed this by . 
 
-ACE  or CGNNs involving--a key problem in taking atomic positions as an input lies with  .. Unlike , to predict from structure in 3D, needed to . E(3)NNs allowed this by . Nonetheless, MLIPs predict a scalar property . While they do not provide electronic structure information, they are commonly used in combination with DFT to accelerate relaxation for large systems / find binding energies etc.. A
+While they do not provide electronic structure information, they are commonly used in combination with DFT to accelerate relaxation for large systems / find binding energies etc.. A . The intersection of ML with DFT is a rich and rapidly-growing field, with particular interest in increasing . ; learn energy functionals to bypass the Kohn-Sham equations;  ; and for tight-binding  . Naturally, the methods described in. ML has been used to fit the kinetic energy for orbital-free DFT
 
 
 Machine-learned energy functionals to bypass solving the Kohn-Sham equations; machine-learned kinetic energy for orbital-free DFT; machine-learned 
 
 \subsection{ML Hamiltonians}
 
-The prediction of the Hamiltonian--a `structure $\rightarrow$ physics $\rightarrow$ property' approach--enables all its derived quantities to be obtained from a single model with much richer information. This task is highly non-trivial: the Hamiltonian is, in theory, infinitely large and needs to obey specific rules with respect to transformations of coordinate, basis, and gauge. The Hamiltonian matrix itself is equivariant, changing in a specific way when a global or local transformation is applied. The total energy is invariant and remains the same when atomic coordinates are rotated together in space; meanwhile, vector properties such as .. are equivariant, and must rotate together with the input structure\autocite{liDeeplearningDensityFunctional2022}.
+The prediction of the Hamiltonian--a `structure $\rightarrow$ physics $\rightarrow$ property' approach--enables all its derived quantities to be obtained from a single model with much richer information. This task is highly non-trivial: the Hamiltonian is, in theory, infinitely large and needs to obey specific rules with respect to transformations of coordinate, basis, and gauge. 
 
-To address the first problem, researchers tend to draw inspiration from the tight-binding methods of the previous section, using localised atomic bases instead of plane waves in order to exploit the nearsightedness of matter . By introducing a cutoff radius, 
+To address the first problem, researchers typically exploit the nearsightedness principle: . A localised atomic basis instead of plane waves in order to exploit the nearsightedness of matter . By introducing a cutoff radius, 
 
-The second issue 
+The second issue: The Hamiltonian matrix itself is equivariant, changing in a specific way when a global or local transformation is applied. The total energy is invariant and remains the same when atomic coordinates are rotated together in space; meanwhile, vector properties such as .. are equivariant, and must rotate together with the input structure\autocite{liDeeplearningDensityFunctional2022}.
 
 This problem can be somewhat simplified by predicting a tight-binding (TB) Hamiltonian instead of the full KS-DFT Hamiltonian.  --kind of a generalisation of Wannierisation? However, it doesnt provide all the information needed
 
  Integration of ML and TB - -- disadvatages -- need KS-DFT Hamiltonians -- distinguish between the two--some fit parameters, some use LCAO basis sets, some use based on DFT
 
-In 2017, Hegde and Bowen explored the idea of utilising kernel ridge regression (KRR) to predict real-space KS-DFT Hamiltonians from atomic environments\autocite{hegdeMachinelearnedApproximationsDensity2017}. In this method, they utilised up to four atomic orbitals to predict the bandstructures of single-species bulk Cu and .. crystals. While the result , they showed that it was both feasible and thingy to predict . Sch\:{u}tt et al built on this work to develop SchNorb, the first deep-learning framework for predicting a KS-DFT Hamiltonian. SchNorb --boasting a mean absolute error (MAE) value of around 0.04. DeepH followed in 2022, . 
+In 2017, Hegde and Bowen explored the idea of utilising kernel ridge regression (KRR) to predict real-space KS-DFT Hamiltonians from atomic environments\autocite{hegdeMachinelearnedApproximationsDensity2017}. In this method, they utilised up to four atomic orbitals to predict the bandstructures of single-species bulk Cu and .. crystals. While the result , they showed that it was both feasible and thingy to predict . Schutt et al built on this work to develop SchNorb, the first deep-learning framework for predicting a KS-DFT Hamiltonian. SchNorb --boasting a mean absolute error (MAE) value of around 0.04. DeepH followed in 2022, . 
+
+These earlier thingies suffered from a lack of equivariance: 
 
 Deep learning Hamiltonian neural networks (DHNNs), a popular subset of ML Hamiltonian models, utilise . Since 2022, nearly all  The complexity of the Hamiltonian and its re
 
@@ -615,7 +624,7 @@ Another key shortcoming of machine learning Hamiltonians is their lack of transf
         \midrule                %provides a lightweight line in the middle of a table
       SchNorb\autocite{schuttUnifyingMachineLearning2019} & 2019 & DTN & ??? \\       %The \multirow{number}{width}{content} command allows for cells to span rows
         \midrule
-        PhiSNet\autocite{unkeSE3equivariantPredictionMolecular} & 2019 & SE(3)-equivariant NN & ? \\
+        PhiSNet\autocite{unkeSE3equivariantPredictionMolecular} & 2021 & SE(3)-equivariant NN & ? \\
         \midrule
          
           DeepH\autocite{liDeeplearningDensityFunctional2022} & 2022 & Message-passing GNN & D2    \\      %columns are separated by a &, the end of a row is indicated by the newline command \\
@@ -629,7 +638,7 @@ Another key shortcoming of machine learning Hamiltonians is their lack of transf
           DeepH-DFPT\autocite{liDeepLearningDensityFunctional2024a} & 2024 & E(3)-equivariant NN & Additional NN for calculating responses to applied fields; allows calculation of electron-phonon coupling etc.      \\ 
       DeepH-UMM\autocite{liDeepLearningDensityFunctional2024a} & 2024 & E(3)-equivariant NN & Universal model for electronic structures.     \\ 
 
-      DeepH-pack & 2026 & E(3)-equivariant & everything i guess \\
+      DeepH-pack\autocite{liDeepHpackGeneralpurposeNeural2026} & 2026 & E(3)-equivariant & everything i guess \\
           
                                   %the number of rows is not declared in advance
             \midrule                %provides a lightweight line in the middle of a table
@@ -639,13 +648,13 @@ Another key shortcoming of machine learning Hamiltonians is their lack of transf
        
        Uni-HamGNN\autocites{zhongUniversalSpinOrbit2026} & 2026 & E(3)-equivariant NN & Universal \\%The \multirow{number}{width}{content} command allows for cells to span rows
             \midrule      
-        Hot-Ham & 2024 & E(3)-equivariant NN & Higher efficiency \\
+        Hot-Ham\autocite{HotHamAccurateEfficient} & 2024 & E(3)-equivariant NN & Higher efficiency \\
         \midrule
        MACE-H & 2025 & C1 & Many-body interactions using ACE \\       %The \multirow{number}{width}{content} command allows for cells to span rows
         \bottomrule    
         \multicolumn{4}{l}{*Datasets are also cited where possible.}
         \\
-        \multicolumn{4}{l}{Acronyms: (G)NN -- (graph) neural network, DTN -- deep tensor network.}
+        \multicolumn{4}{l}{Acronyms: KRR -- Kernel Ridge Regression, DTN -- deep tensor network, (G)NN -- (graph) neural network.}
         %provides a line below the bottom row
     \end{tabular}
     \label{tab:example}         %tables can be labeled too so they can be referred to.
@@ -654,6 +663,14 @@ Another key shortcoming of machine learning Hamiltonians is their lack of transf
 
 \subsection{Challenges and future directions}
 
+Since it was established that , advances in ML Hamiltonians can be roughly categorised into three types: (1) improvements in architecture, (2) advances in integration and interpretability, and (3) 
+
+Improvements in architecture concern the usage of 
+
+
+
+
+A fourth, elusive goal is to achieve a universal deep-learning Hamiltonian, capable of generalising to species across the periodic table as well as new, unseen geometries. Both DeepH and HamGNN have reported their 
 
 
 There are several important things here. 
@@ -680,7 +697,10 @@ bypassing dft altogether and using ML to solve the quantum many-body schrodinger
 
 holy grail: universal models -- don't need to retrain
 
-Ultimately, the goal is to achieve accurate results with as little training data as possible 
+Ultimately, the goal is to achieve accurate results with as little training data as possible
+
+
+Until very recently, . This was . However, in 2026, 
 
 \section{Summary}
 
@@ -713,7 +733,7 @@ Monolayer unit cell calculations utilised an SCF k-grid of 12\,x\,12\,x\,1 and a
 
 The monolayer \ce{MoS2} model was trained using a publically available dataset found at Ref. \cite{gongDataset1GeneralFramework2023}. These were used to calculate the results published in the original paper for DeepH-E3, allowing for efficient benchmarking of model performance. The monolayer dataset is composed of 500 5\,x\,5 supercells, generated in VASP using PAW pseudopotentials and a PBE functional. To obtain the structures, a molecular dynamics run at 300\,K was carried out over a $\Gamma$-only k-grid and with a cutoff energy of 450\,eV. The first 500 unequilibrated structures were then discarded and the latter 500 used. Hamiltonians were then obtained with OpenMX, using a 5\,x\,5\,x\,1 $\Gamma$-centred k-grid, Generalized Gradient Approximation Perdew-Burke-Ernzerhof (GGA-PBE) functionals, and pseudo-atomic orbitals (Mo7.0-s3p2d2 and S7.0-s2p2d1).
 
-All other training data was generated using Python code, as shown in Fig. \ref{fig:training_structures}. To obtain the bilayer dataset, AA and AB bilayers were first created with an arbitrary spacing. These were then relaxed using molecular dynamics optimisation in OpenMX to within (), in order to determine the equilibrium interlayer spacing and atomic positions. Next, the top layer was shifted in-plane by a value between , as well as vertically by a value between . Finally, random vectors for each atom were generated by sampling a normal distribution with a mean of 0\,\AA\ and standard deviation of 0.05\,\AA\ for each Cartesian direction. These were applied to the atomic coordinates to perturb the system while maintaining enough structure that the bonding environments and physical properties remained intact.
+All other training data was generated using Python code, as shown in Figure \ref{fig:training_structures}. To obtain the bilayer dataset, AA and AB bilayers were first created with an arbitrary spacing. These were then relaxed using molecular dynamics optimisation in OpenMX to within (), in order to determine the equilibrium interlayer spacing and atomic positions. Next, the top layer was shifted in-plane by a value between , as well as vertically by a value between . Finally, random vectors for each atom were generated by sampling a normal distribution with a mean of 0\,\AA\ and standard deviation of 0.05\,\AA\ for each Cartesian direction. These were applied to the atomic coordinates to perturb the system while maintaining enough structure that the bonding environments and physical properties remained intact.
 
 \begin{figure}[h]      
 	\centering			%put the figure in the middle of the page
@@ -732,7 +752,7 @@ OpenMX calculations were all carried out using a 5\,x\,5\,x\,1 $\Gamma$-centred 
 \paragraph{Vacancies} Systems with vacancies were created by removing a random Mo or S atom near the centre of a 5\,x\,5 supercell, mimicking a defect concentration of 0.01333\%. Relaxations were carried out to within . An SCF k-grid of 5\,x\,5\,x\,1 and energy cutoff of 300\,Ry was used. 
 
 \subsection{Quantum ESPRESSO\autocite{giannozziQUANTUMESPRESSOModular2009, giannozziAdvancedCapabilitiesMaterials2017}}
-In addition to OpenMX, Quantum ESPRESSO was used to verify results and to obtain results of optical calculations not provided by OpenMX. Unlike OpenMX, Quantum ESPRESSO utilises a plane-wave basis set. Norm-conserving pseudopotentials from the SG15 library were used in all Quantum ESPRESSO calculations\autocites{hamannOptimizedNormconservingVanderbilt2013, schlipfOptimizationAlgorithmGeneration2015}. SCF runs utilised a $\Gamma$-centered 5\,x\,5\,1 k-grid. 
+In addition to OpenMX, Quantum ESPRESSO was used to verify results and to obtain results of optical calculations not provided by OpenMX. Unlike OpenMX, Quantum ESPRESSO utilises a plane-wave basis set. Norm-conserving pseudopotentials from the SG15 library were used in all Quantum ESPRESSO calculations\autocites{hamannOptimizedNormconservingVanderbilt2013, schlipfOptimizationAlgorithmGeneration2015}. SCF runs utilised a $\Gamma$-centered 5\,x\,5\,x\,1 k-grid. 
 
 To calculate the joint density of states, the \texttt{epsilon.x} programme in Quantum ESPRESSO was used. Interband and intraband smearing values were set to 0.15 and 0\,eV respectively, and the grid fineness was set to 0.0001\,eV for an energy range of 0 to 10\,eV. The formula is detailed in Equation \ref{equation:jdos}.
 
@@ -744,9 +764,9 @@ The reference values for the transition dipole matrix element were obtained from
 
 \subsection{Deep learning}
 
-Deep learning is a subfield of ML which concerns itself with neural networks: ?? made up of artificial neurons, or 'perceptrons', which . In deep learning, 
+Deep learning is the study of deep neural networks, complex machine learning systems capable of learning useful features by themselves through large stacks of layers built on top of each other. -- expense: networks bigger, more memory and time to train
 
-The 
+Of the various types of neural networks, there are two which appear most frequently in materials science: message-passing neural networks and . 
 
 \subsection{Neural network architecture of DeepH-pack and DeepH-E3}
 
@@ -756,11 +776,13 @@ DeepH-pack and DeepH-E3 are both neural networks, designed to perform a mapping 
 DeepH-pack, developed in 2023 by Li et al, utilises a message-passing neural network composed of blocks .  
 
 DeepH-E3 is the E(3)-equivariant generalisation of DeepH-pack, which uses E(3)-equivariant transformers (a type of neural network which ). It uses the e3nn module, which 
-A simplified description of how DeepH-E3 works is provided in Fig. 33
+A simplified description of how DeepH-E3 works is provided in Figure 33
 
 Crystal structures--both for the training data and for --are represented as a graph, with atoms as vertices and bonds as edges. These graphs obey . 
 
 The E(3) equivariance of DeepH-E3 is achieved by the addition of a . 
+
+An understanding of how DeepH-E3 predicts the given Hamiltonian is essential in interpreting its successes and failures. DeepH-E3 groups Hamiltonians into target `blocks', where each .
 
 \subsection{Preprocessing}
 
@@ -780,12 +802,12 @@ Number of epochs trained:
 
 \subsection{The predicted Hamiltonian}
 
-DeepH-E3 utilises non-orthogonal localized orbitals as a basis set. As a result, the overlap matrix is needed to diagonalise the Hamiltonian and obtain physical properties. Li et al provide a tool to calculate the overlap matrix from an OpenMX input file at ref \autocite[]. 
+DeepH-E3 utilises non-orthogonal localized orbitals as a basis set. As a result, the overlap matrix is needed to diagonalise the Hamiltonian and obtain physical properties. Li et al provide a tool to calculate the overlap matrix from an OpenMX input file at Ref. \cite{}. 
 
 
 The Hamiltonian and overlap matrix are both output in real-space form, similar to a Wannier tight-binding Hamiltonian. The real-space Hamiltonian takes the form $H_{i\alpha,j\beta} = \langle\phi_{i \alpha}|\hat H|\phi_{{j \beta}}\rangle$,  $S_{i\alpha,j\beta} = \langle\phi_{i \alpha}|\phi_{{j \beta}}\rangle$ respectively, where $|\phi_{i\alpha}\rangle$ and $|\phi_{j\beta}\rangle$ are the basis orbitals of OpenMX. 
 
-The Hamiltonian procured by DeepH takes the form of a tight-binding Hamiltonian in real space, similar to a Wannier tight-binding Hamiltonian.  Each block emulates the hopping element from the central unit cell to a neighbouring cell, as shown in Fig. \ref{fig:hamiltonian}. $H_{nn'}(R) = \langle nR|H|n'R'\rangle$
+The Hamiltonian procured by DeepH takes the form of a tight-binding Hamiltonian in real space, similar to a Wannier tight-binding Hamiltonian.  Each block emulates the hopping element from the central unit cell to a neighbouring cell, as shown in Figure \ref{fig:hamiltonian}. $H_{nn'}(R) = \langle nR|H|n'R'\rangle$
 
 
 \begin{figure}[h]      
@@ -800,26 +822,24 @@ In order to build the Hamiltonian in k-space, the original inferencing tool util
 S(\vec k) &= \sum S(\vec R)e^{i\vec R} 
 \end{align}. 
 
-Calculating the derivative of the Hamiltonian is a little more complex, requiring:
+Calculating the derivative of the Hamiltonian is a little more complex, and was not included in the public code. In the following equations, $a_i$ refers to the $i$th real lattice vector and $R_i$ the $i$th component of $\vec R$.
+ 
 \begin{align}\frac{\partial}{\partial_i}H(\vec k) &= \sum H(\vec R)e^{i\vec R}\cdot iR_ia_i
 \\\frac{\partial}{\partial_i}S(\vec k) &= \sum S(\vec R)e^{i\vec R}\cdot iR_ia_i\end{align}
-where $a_i$ refers to the $i$th real lattice vector and $R_i$ the $i$th component of $\vec R$.
 
 
 
-The Hamiltonian and its derivative, as calculated above, is nonorthogonal due to the usage of nonorthogonal localised orbitals as the basis set. L\"{o}wdin orthogonalization can be utilised to transform the nonorthogonal Hamiltonian $\hat H^L(\vec k)$ into an orthogonal basis $\hat H^O(\vec k)$:
+L\"{o}wdin orthogonalization can be utilised to transform the nonorthogonal Hamiltonian $\hat H^L(\vec k)$ obtained above into an orthogonal basis $\hat H^O(\vec k)$:
 
 \begin{equation}
 \hat H^O(\vec k) = S^{-\frac12}(\vec k) \hat H^L(\vec k)S^{-\frac12}(\vec k)
 \end{equation}
 
-Derivatives of the orthogonalised Hamiltonian are essential in predicting properties such as the transition dipole matrix elements and the dielectric function. The task of obtaining these derivatives is non-trivial; nonetheless, they can be obtained using the method outlined in Ref. \cite{wangFirstprinciplesCalculationOptical2019}. 
+Derivatives of the orthogonalised Hamiltonian are essential in predicting properties such as the transition dipole matrix elements and the dielectric function. The task of obtaining these derivatives is not trivial; nonetheless, they can be obtained from the nonorthogonal derivatives using the method outlined in Ref. \cite{wangFirstprinciplesCalculationOptical2019}. 
 
 \section{Electronic and optical properties}
 
 The DeepH-pack/DeepH-E3 code repositories includes an inferencing tool for the bandstructure, calculated by diagonalizing the predicted Hamiltonian: $H(\vec k)\psi_k = \epsilon_k S(\vec k)\psi_k$. The remaining properties included in this work were obtained using original code. 
-
-In order to find the Fermi level, a bisection search was utilised after obtaining the density of states. A streamlined workflow is shown in Figure \ref{fig}. The number of electrons in the system is obtained from the OpenMX input file via an adapted preprocessing script. In semiconductors, the Fermi level is set to the middle of the gap. This is important for standardising the presentation of the thing--since tend to offset the energy--and is essential in calculating electronic and optical properties involving occupation factors and the Fermi function.
 
 The density of states was calculated as follows:
 
@@ -828,15 +848,20 @@ The density of states was calculated as follows:
 Similarly, the joint density of states, G(E), and partial density of states, PDOS(E), were calculated using the following formulae: \begin{align}
 G(E) &= \frac1{N_k}\sum_{\vec k, m, n} \delta(E-(E_{m,\vec k}-E_{n,\vec k})) \label{equation:jdos}\\ P_A(E) &= \frac1{N_k}\sum_{n,k, (a,b \in A)} c_{n,k,a}^*c_{n,k,b} \delta(E-E_{n,k})\end{align}
 
-In the above calculations, the Dirac-delta was approximated by a Gaussian with a smearing width of 0.15\,eV (is this true? i honestly dont remember): $$\delta(E-E_{n,k}) = \frac{1}{\sigma\sqrt{\pi}}\exp(-\frac{(E-E_{n,k})^2}{\sigma^2})$$. An energy range of 
+In the above calculations, the Dirac-delta was approximated by a Gaussian with a smearing width of 0.15\,eV: $$\delta(E-E_{n,k}) = \frac{1}{\sigma\sqrt{\pi}}\exp(-\frac{(E-E_{n,k})^2}{\sigma^2})$$
+
+The Fermi level is essential in standardising bandstructure plots, as well as in determining occupation factors which play a major role in many optical properties. In order to find the Fermi level, a bisection search was utilised after obtaining the density of states. A streamlined workflow is shown in Figure \ref{fig}. For semiconductors, the Fermi level is set to the middle of the gap; values for the bandgap, conduction band minimum, and valence band maximum are also output. It is important to note that this method only works if all valence bands are calculated; adjustments must be made for sparse calculations where only a set number of bands around a chosen energy level are found.
+
 
 \subsection{Optical properties}
 
-Transition matrix element: $$\text{TME}_i = |\langle\psi_{\text{CBM}}|\frac{\partial H}{\partial x_i}|\psi_{\text{VBM}}\rangle|^2$$
+The transition dipole matrix, which captures the probability of a transition from the highest  valence band to the lowest conduction band, was calculated as follows: $$d_i = |\langle\psi_{\text{CBM}}|\frac{\partial H}{\partial x_i}|\psi_{\text{VBM}}\rangle|^2$$
 
 The fineness of the k-grid is an important parameter; as such, convergence studies were carried out for each calculation. The final k-grid was in .... size, taking .... seconds for a 3-atom system (monolayer \ce{MoS2}) and .... seconds for a 75-atom system (a $5\times 5$ \ce{MoS2} supercell).
 
-Disregarding the intraband contribution, the equation used for the complex dielectric function was: $$\epsilon_{\alpha, \beta} = \delta_{\alpha\beta} +\frac{8}{N_k\Omega}\sum_{\vec k, m\neq n} \frac{\mathbf{M}_{\alpha, \beta}}{E_{m,k}-E_{n,k}}\frac{f(E_k,n)}{(\omega_{m,k}-\omega_{n,k})^2-\omega^2-i\Gamma \omega}$$ where $\mathbf{M}_{\alpha, \beta} = \langle$. 
+Disregarding the intraband contribution, the equation used for the complex dielectric function was: $$\epsilon_{\alpha, \beta} = \delta_{\alpha\beta} +\frac{8}{N_k\Omega}\sum_{\vec k, m\neq n} \frac{ \langle m|\vec p_\alpha|n\rangle\langle n|\vec p _\beta ^\dagger|m\rangle}{E_{m,k}-E_{n,k}}\frac{f(E_k,n)}{(\omega_{m,k}-\omega_{n,k})^2-\omega^2-i\Gamma \omega}$$ and $\beta$ represent Cartesian directions (only $x$ and $y$ were used for the 2D \ce{MoS2} layer), $N_k$ is the number of k-points summed over, $\Omega$ is the .
+
+Since the material is 2D, there . We sought to compare the accuracy; postprocessing such as dividing by thickness can then be applied to the final.
 
 Atomic units, where  $\hbar=m_e=1$ and hence  $E = \hbar\omega=\omega$. 
 
@@ -863,8 +888,7 @@ Root-mean-squared error (RMSE) was found by averaging over the $$\frac{1}{N_k}\f
 
 \section{Bandstructure of monolayer \ce{MoS2}}
 
-Firstly, we assessed the performance of DeepH-E3 on monolayer \ce{MoS2} by plotting the bandstructures calculated by DeepH-E3 and by DFT, as shown in Fig. \ref{fig:mono1}. The calculated RMSE low as 0.088\,eV, which is highly promising. Additionally, differences in the bandstructures calculated by DFT and DeepH are negligible up until 20-30\,eV above the Fermi level.
-
+Firstly, we assessed the performance of DeepH for monolayer \ce{MoS2}. The bandstructure calculated by DeepH-E3 is shown in Figure \ref{fig:mono1} and compared to the bandstructure obtained from DFT. The average RMSE over all energy bands is approximately 0.255\,eV, which is highly promising. Differences in the bandstructures calculated by DFT and DeepH are negligible up until 20-30\,eV above the Fermi level.
 
 
 \begin{figure}[h]      
@@ -874,7 +898,9 @@ Firstly, we assessed the performance of DeepH-E3 on monolayer \ce{MoS2} by plott
 	\label{fig:mono1}			%so you can reference to the figure elsewhere using \ref{}
 \end{figure}
 
-Compressive and tensile biaxial strains ranging from $\pm$1\% to $\pm$10\% were applied to the monolayer \ce{MoS2} system. As seen in \ref{fig:strain1}, the model performs with reasonable accuracy for strains below $\pm$5\%, but fails to capture subtleties such as the shift from a direct to indirect bandgap as strain is applied. Above $\pm$6\% strain, however, the results are extremely inaccurate, particularly for compressive strains.
+Next, compressive and tensile biaxial strains ranging from $\pm$1\% to $\pm$10\% were applied to the monolayer \ce{MoS2} system. As seen in Figure \ref{fig:strain1}, the model performs with reasonable accuracy for strains below $\pm$5\%, but fails to capture the transition from a direct to indirect bandgap as strain is applied. Above $\pm$6\% strain, however, the results are extremely inaccurate, particularly for compressive strains.
+
+The monolayer with 10\% tensile strain seems to be an outlier, as its RMSE is lower than even . To . The performance of DeepH appears linked to the average magnitude of force in the system: as the .
 
 
 \begin{figure}[h]      
@@ -884,9 +910,9 @@ Compressive and tensile biaxial strains ranging from $\pm$1\% to $\pm$10\% were 
 	\label{fig:strain1}			%so you can reference to the figure elsewhere using \ref{}
 \end{figure}
 
-The distribution of error throughout k-space is notably non-uniform, with strong valleys between high-symmetry points for compressive strain and at the $\Gamma$-point for tensile strain. In order to assess why this occurs, we looked at the projected density of states. Notably,
+From Figure \ref{fig:strain1}(d) and (e), it can be seen that the distribution of error throughout k-space is notably non-uniform, with increased error between high-symmetry points for compressive strain and at the $\Gamma$-point for tensile strain. In order to assess why this occurs, we looked at the projected density of states. Notably,
 
-The error seems to be highest where deviation from the unstrained monolayer is highest--for example, in compressive strain, . Meanwhile, tensile strain  alters . The model appears to drastically overestimate the shifts at $\Gamma$, where out-of-plane orbitals like Mo$_{d_z^2}$ and S$_p$ contribute the highest. 
+The model appears to drastically overestimate the shifts at $\Gamma$, where out-of-plane orbitals like Mo$_{d_z^2}$ and S$_p$ contribute the highest. 
 
 As DeepH-E3 learns based on `target blocks' of inter-orbital elements, it seems likely that .  
 
@@ -894,39 +920,43 @@ The training dataset for monolayer \ce{MoS2} was taken from a molecular dynamics
 
 \section{Bilayer \ce{MoS2}}
 
-First, the monolayer-only model was tested on bilayer \ce{MoS2}. Since its performance was predictably abysmal, a separate model was trained on bilayer-only data. An attempt was made to use the monolayer model as a checkpoint and continue its training with the bilayer data, but its performance on the monolayer declined; as a result, it was concluded that utilising the same model for vastly different geometries such as the monolayer and bilayer would not yield good results. 
+First, the DeepH model trained only on monolayer data was tested on bilayer \ce{MoS2} in the AA configuration. Since its performance was predictably abysmal, as shown in Figure \ref{fig:bilayer}(a), a separate model was trained on bilayer-only data. An attempt was made to use the monolayer model as a starting point and continue its training with the bilayer data, but its performance on the monolayer declined; as a result, it was concluded that utilising the same model for geometries as different as the monolayer and bilayer would not yield good results. 
 
-The test and validation MAE for this bilayer model is notably higher than that of the monolayer model after the same number of epochs ( ). As shown in Fig. \ref{fig:bilayer}, the model performs fairly well for the AA bilayer, but less so for the AB bilayer, with the magnitude of the error increasing for bands further away from the Fermi level. Additionally, DeepH does not completely capture nuances such as the direct-to-indirect bandgap shift--while the DFT bandstructure for the AA bilayer shows an indirect bandgap from the valence band maximum at $\Gamma$ to the conduction band minimum at K, the conduction band minimum predicted by DeepH is midway between G and M.
+As shown in Figure \ref{fig:bilayer}, the model performs fairly well for the AA bilayer, but less so for the AB bilayer, with the magnitude of the error increasing for bands further away from the Fermi level. Additionally, DeepH does not completely capture nuances such as the direct-to-indirect bandgap shift--while the DFT bandstructure for the AA bilayer shows an indirect bandgap from the valence band maximum at $\Gamma$ to the conduction band minimum at K, the conduction band minimum predicted by DeepH is midway between G and M.
 
 
 \begin{figure}[h]      
 	\centering			%put the figure in the middle of the page
 	\includegraphics[height=15cm]{./img/fig_bilayer.jpg}			
-	\caption{(a) The bandstructure generated by the monolayer model for an AA bilayer. Bandstructures generated by the bilayer model after 1800 epochs for (b) an AA bilayer and (c) an AB bilayer. (d) A side view of the AA and AB bilayer structures. Bandstructures for randomly perturbed bilayer supercells obtained from (e) DFT and (f) DeepH.}		%Make your caption descriptive
+	\caption{(a) The bandstructure generated by the monolayer model for an AA bilayer. (b) Bandstructures generated by the bilayer model after 1800 epochs for (i) an AA bilayer and (ii) an AB bilayer. (d) A side view of the AA and AB bilayer structures. (e) Bandstructures for a randomly perturbed bilayer supercell obtained from (i) DFT and (ii) DeepH.}		%Make your caption descriptive
 	\label{fig:bilayer}			%so you can reference to the figure elsewhere using \ref{}
 \end{figure}
 
-Randomly perturbed supercells, generated using the same process as the training data, were also used to assess the bilayer model's performance on unseen geometries. Ideally, the model would be able to . However, as seen in Fig. \ref{fig:bilayer}(d), this was not the case. The DeepH bandstructure displays . While some of this might 
+Randomly perturbed supercells, generated using the same process as the training data, were used to assess the bilayer model's performance on unseen geometries. As seen in Figure \ref{fig:bilayer}(d), the bandstructure calculated by DeepH was highly inaccurate. While some of this might 
 
-The bilayer model was notably slower to train. This may have been because ; .  
+The test and validation MAE for this bilayer model is notably higher than that of the monolayer model after the same number of epochs ( ). 
 
 
 \section{\ce{MoS2} nanotubes}
 
-DeepH-E3 was also tested on nanotubes with radii ranging from 10\,\AA\ to 50\,\AA. Ten nanotubes--five in the zigzag configuration and five in the armchair configuration--were generated and relaxed. 
+DeepH was also tested on nanotubes with radii ranging from 10\,\AA\ to 50\,\AA. Ten nanotubes--five in the zigzag configuration and five in the armchair configuration--were generated and their bandstructures were obtained using DeepH and DFT. 
 
 
 \begin{figure}[h]      
 	\centering			%put the figure in the middle of the page
 	\includegraphics[height=10cm]{./img/fig_nanotubes.jpg}			
-	\caption{}		%Make your caption descriptive
+	\caption{(a) Bandstructures for a (50,50) nanotube, obtained using (i) DFT and (ii) DeepH. (b) Bandstructures for a (20,20) nanotube, obtained with (i) DFT and (ii) DeepH. (c) A plot of the bandstructure RMSE against the approximate strain resulting from curvature; results for nanotubes are contrasted to those of strained monolayers.}		%Make your caption descriptive
 	\label{fig:nanotube}			%so you can reference to the figure elsewhere using \ref{}
 \end{figure}
 
-Figure \ref{fig:nanotube} shows that the accuracy of the predicted bandstructure declines rapidly with decreasing nanotube radius. The error rises drastically near the $\Gamma$ point, which could be a direct result of the strains. The magnitude of the error is compared to that of strain alone; estimated compressive and tensile strains are calculated using the circumference of each layer as shown in Fig. \ref{fig:nanotube}(e): \begin{align}\varepsilon_{\text{tensile}} &= (c_{\text{outer}}-c_{\text{middle}})/c_{\text{middle}}\\\varepsilon_{\text{compressive}} &= (c_{\text{inner}}-c_{\text{middle}})/c_{\text{middle}}\end{align}
+Figure \ref{fig:nanotube} shows that the accuracy of the predicted bandstructure declines rapidly with decreasing nanotube radius. The error rises drastically near the $\Gamma$ point, which could be a direct result of the strains. 
+
+In Figure \ref{fig:nanotube}(b), the magnitude of the error is compared to that of strain alone, where estimated compressive and tensile strains for the nanotubes are calculated wlith the following equations: \begin{align}\varepsilon_{\text{tensile}} &= (c_{\text{outer}}-c_{\text{middle}})/c_{\text{middle}}\\\varepsilon_{\text{compressive}} &= (c_{\text{inner}}-c_{\text{middle}})/c_{\text{middle}}\end{align}\label{equation:nanostrain}
+
+Figure \ref{fig:nanotube}(e) describes how the circumferences are obtained. The diameter of the middle layer, as indicated in Table \ref{tab:nanostrains}, is found by \textit{n} $\times$ 3.19 $\div$ $\pi$ , where \textit{n} is the magnitude of the rolling vector and 3.19\,\AA\ is the magnitude of both unit vectors in \ce{MoS2} ($|\vec a_1|=|\vec a_2| = 3.19$). The diameters of the outer and inner layers are then found by adding and subtracting 3.13\,\AA\ (the thickness of a single \ce{MoS2} layer) respectively; from these, circumferences can be calculated and substituted into Eqs. \ref{equation:nanostrain}. 
 
 \begin{table}
-    \caption{A caption for the table. This is typeset above the table  so you know what the table is showing.}
+    \caption{Information about the studied nanotubes, including strains for the outer and inner nanotube layers.}
     \centering
     \begin{tabular}{cccccc}   
         \toprule      
@@ -941,8 +971,7 @@ Figure \ref{fig:nanotube} shows that the accuracy of the predicted bandstructure
     \label{tab:nanostrains}         %tables can be labeled too so they can be referred to.
 \end{table}
 
-The diameter of the middle layer, as indicated in Table \ref{tab:nanostrains}, is found by $n
-\times 3.19\div\pi$, where $n$ is the magnitude of the rolling vector and 3.19\,\AA\ is the magnitude of the unit vectors in \ce{MoS2}. The diameters (and hence circumferences) of the outer and inner layers are then found by adding and subtracting 3.13\,\AA\ (the thickness of a single \ce{MoS2} layer) respectively. 
+
 
 Surprisingly, despite the estimated strains of $\pm$6\%--the limit where DeepH predictions exceed an RMSE of 1.0\,eV for strained monolayers--the model performs well on (50,0) and (50,50) nanotubes. This could indicate that as long as Mo-Mo bonds within the middle plane retain enough similarity to the monolayer form, ; the key difficulty for DeepH-E3 when it comes to strain is then Mo-Mo interactions. 
 
@@ -970,8 +999,8 @@ Additionally, the shifts in the valence and conduction band are not accurately c
 
 \begin{figure}[h]      
 	\centering			%put the figure in the middle of the page
-	\includegraphics[height=10cm]{./img/fig_vac.jpg}			
-	\caption{}		%Make your caption descriptive
+	\includegraphics[height=10cm]{./img/fig_vacancies.jpg}			
+	\caption{(a) A diagram of a \ce{MoS2} monolayer with a molybdenum vacancy. (b) Bandstructures for the structure in (a), calculated by (i) DFT and (ii) DeepH. (c) A diagram of a sulphur vacancy in monolayer \ce{MoS2}. (d) Bandstructures of the aforementioned monolayer \ce{MoS2} with an S vacancy, calculated by (i) DFT and (ii) DeepH. All bandstructures have been adjusted so that the valence band minimum is at 0\,eV.}	%Make your caption descriptive
 	\label{fig:vac}			%so you can reference to the figure elsewhere using \ref{}
 \end{figure}
 
@@ -987,7 +1016,9 @@ Additionally, the shifts in the valence and conduction band are not accurately c
 	\label{fig:optical}			%so you can reference to the figure elsewhere using \ref{}
 \end{figure}
 
-Several optical effects were computed from the DeepH Hamiltonian, as shown in Figure \ref{fig:optical}. The accuracy in the transition dipole matrix indicates that the method used to orthogonalize and differentiate the Hamiltonian is reliable. The joint density of states (JDOS) and dielectric function, while inexact, capture the positions of peaks and their rough amplitudes. As optical functions computed solely from atomic structure are notoriously tricky, the low error can be considered extremely encouraging. 
+Several optical properties were computed from the DeepH Hamiltonian, as shown in Figure \ref{fig:optical}. 
+
+The accuracy in the transition dipole matrix indicates that the method used to orthogonalize and differentiate the Hamiltonian is reliable. The joint density of states (JDOS) and dielectric function, while inexact, capture the positions of peaks and their rough amplitudes. As optical functions computed solely from atomic structure are notoriously tricky, the low error can be considered extremely encouraging. 
 
 The JDOS is accurate up to approximately 7eV; this can be attributed to the fact that Quantum ESPRESSO utilises a plane wave basis set, which--unlike the localised atomic orbitals used by OpenMX and DeepH--captures vacuum states above the Fermi level. As shown in \ref{figure}, the bandstructures computed in OpenMX and Quantum ESPRESSO diverge wildly above 7eV. 
 
